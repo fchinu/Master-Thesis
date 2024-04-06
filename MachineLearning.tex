@@ -1,0 +1,57 @@
+\chapter{Machine Learning}
+
+The term \emph{machine learning} (ML) is a broad and versatile concept, encompassing a wide range of algorithms that grant computers the capacity to learn and adapt without being explicitly programmed to do so~\cite{5392560}. A more comprehensive definition characterizes ML as the study of algorithms that enhance their performance (P) at a specific task (T) through the accumulation of experience (E)~\cite{mitchell1997machine}. In recent years, ML techniques have witnessed widespread adoption across diverse fields, with significant impacts realised, particularly with the emergence of generative models such as GPT~\cite{openai2023gpt4}.
+ML algorithms have found extensive applications in the high-energy physics field, primarily for the task of distinguishing interesting signals from the vast background present in particle collision data. Furthermore, these algorithms have been employed as triggers, aiding in the rapid identification of events of interest, and have also been instrumental in event reconstruction. Notably, ML algorithms were used in the discovery of the Higgs boson~\cite{CMS:2012qbp}.
+
+\section{Supervised learning}
+Supervised learning is one of the main branches of machine-learning problems, together with unsupervised and reinforcement learning. Machine learning tasks are usually described in terms of how the machine learning system should process an example, which is a collection of features $\mathbf{x}$ that have been quantitatively measured from some object or event that one wants the machine learning system to process.  Notably, this process encompasses the extraction of salient patterns or relationships inherent in the data. In the case of supervised learning, each example is coupled with a corresponding label or target, $\mathbf{y}$. The objective of supervised learning is to learn to predict or infer $\mathbf{y}$ based on the associated features, $\mathbf{x}$.
+Supervised learning problems exhibit further segmentation into two distinct sub-categories, known as classification and regression. In the former, the label $\mathbf{y}$ assumes values from a finite and discrete set of categories, often representing distinct classes or groups. In the latter, the label $\mathbf{y}$ takes the form of one or more continuous variables. This necessitates the learning system to deduce a continuous function or mapping between $\mathbf{x}$ and $\mathbf{y}$, where the goal is to predict and approximate numerical values rather than class affiliations.
+
+\subsection{Classification Methods and Logistic Regression}
+
+Supervised learning excels in tackling classification tasks, where the objective is to map input features, $\mathbf x$ in $\mathbb{R}^\mathrm{d}$, to discrete class labels, $\mathbf{y}$, representing distinct categories. To understand how algorithms learn how to handle classification problems, logistic regression can be studied, given its simplicity and interpretability. \\
+It applies a linear transformation to the input features and a further transformation using a sigmoid function $\sigma(z)$:
+
+\begin{equation}
+\hat{y}(\mathbf{x}) = \sigma(\mathbf{w}^\mathrm{T} \mathbf{x} + b),
+\end{equation}
+
+where $\mathbf{w}$ \\in \\mathbb\{R\}^d is the weight vector, and b is the bias term. This function estimates the probability of an event belonging to a specific class, typically represented by a value between 0 and 1. This probabilistic nature aligns well with the inherent stochasticity of particle collision data.
+
+However, it's essential to acknowledge limitations of Logistic Regression. Its linear decision boundary might not effectively capture complex non-linear relationships within the data. Additionally, due to its two-class nature, it requires adaptations for problems with more than two classes, as we will discuss later.
+
+While other classification methods like Decision Trees, Support Vector Machines (SVMs), and Random Forests offer alternative approaches, Logistic Regression often serves as a strong baseline due to its interpretability and computational efficiency, making it a valuable tool in the initial stages of analysis.
+
+\subsection{Loss Function and Optimization}
+
+The performance of a machine learning model is evaluated through a loss function, L\(\\mathbf\{y\}, \\hat\{\\mathbf\{y\}\}\), quantifying the discrepancy between predicted labels, \\hat\{\\mathbf\{y\}\}, and true labels, \\mathbf\{y\}. In Logistic Regression, the Binary Cross-Entropy loss is commonly used:
+
+\begin{equation}
+L(\mathbf{y}, \hat{\mathbf{y}}) = -\frac{1}{N} \sum_{i=1}^N \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right],
+\end{equation}
+
+where N is the number of data points. This function penalizes the model for incorrect classifications, with larger errors contributing more to the total loss.
+
+Minimizing the loss function guides the training process, often employing gradient descent, an iterative optimization algorithm. At each iteration, the model parameters, \\theta \= \\\{\\mathbf\{w\}, b\\\}, are updated in the direction that minimizes the loss gradient:
+
+\begin{equation}
+\theta \leftarrow \theta - \eta \nabla L(\mathbf{y}, \hat{\mathbf{y}})
+\end{equation}
+
+where \\eta is the learning rate, controlling the step size in parameter space. Regularization techniques like L1 or L2 penalty terms can be incorporated to prevent overfitting, adding an additional term to the loss function that penalizes model complexity.
+
+\subsection{Multiclass Classification}
+
+Logistic Regression thrives in binary classification problems, but real-world scenarios often involve more than two distinct classes. For instance, charm meson production might necessitate classifying events into various meson types. Adapting Logistic Regression to such multiclass problems requires specific strategies.
+
+One approach is the "One-vs-Rest" strategy, where K Logistic Regression models are trained, each differentiating one class (\\hat\{y\}\_k) from all others combined:
+
+\begin{equation}
+f_k(\mathbf{x}) = \sigma(\mathbf{w}_k^\top \mathbf{x} + b_k).
+\end{equation}
+
+The class with the highest output probability, \\hat\{y\} \= \\arg\\max\_k f\_k\(\\mathbf\{x\}\), is assigned to the input data point.
+
+Another approach, "One-vs-One," involves building K\(K\-1\)/2 individual models to distinguish each pair of classes \(k, j\), later aggregating their predictions for final classification. This can be achieved through various voting schemes, such as majority voting or winner-takes-all.
+
+Both methods have their advantages and disadvantages. "One-vs-Rest" is computationally efficient but can suffer from the problem of "one-against-all," where a class with many examples might dominate the others. "One-vs-One" offers better class separation but requires training and storing a larger number of models. The optimal choice depends on the specific problem
