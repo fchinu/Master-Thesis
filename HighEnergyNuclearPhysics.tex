@@ -255,11 +255,21 @@ By limiting the calculations at the first order in the perturbative expansion, o
 \end{equation}
 where $\mathrm{N_c}$ is the number of colours (3), while $\mathrm{N_f}$ is the number of quark flavours which can be considered massless at the physical scale $Q^2$ at which the coupling is being measured.
 From Eqs.~\ref{eq:beta0} and \ref{eq:beta_def}, one can extract the $Q^2$ dependency of the running coupling constant:
-\begin{equation*}
+\begin{equation}\label{eq:alpha_s_running}
     \alpha_s(Q^2) = \frac{\alpha_s(\mu^2)}{1+\alpha_s(\mu^2)\beta_0 \mathrm{log}(Q^2/\mu^2)}\ ,
+\end{equation}
+Notably, since $\beta_0$ is positive also when considering 6 quark flavours, the strong coupling constant exhibits a monotonic decreasing trend as a function of $Q^2$. This behaviour differs from the one of the electromagnetic coupling constant, which increases with the energy scale due to the screening effect of the vacuum polarisation. For QCD, the running of the coupling constant is a direct consequence of the non-Abelian nature of the theory, allowing for gluon self-interactions, which give rise to an anti-screening effect. The idea is that the emission of virtual gluons by static colour sources causes their colour charges to 'leak out' into the surrounding vacuum. Since the interaction between distributions of charges is weaker than the one between point-like charges when the distributions overlap, the effective coupling constant decreases at short distances. This behaviour is known as asymptotic freedom, a key feature of QCD which allows for the perturbative expansion of the theory at high energy scales, where the strong coupling constant is small. At the same time, the running of the coupling constant implies that the theory is non-perturbative at low energy scales, and phenomenological models are required to describe the strong interaction in this regime. Instead of using the renormalisation scale $\mu$ as a free parameter, one can use the running coupling constant to define a physical scale, $\Lambda_{QCD}$, which is the energy scale at which the coupling constant would diverge, if extrapolated outside the perturbative regime. Using Eq.~\ref{eq:alpha_s_running}, one can write:
+\begin{equation*}
+    \alpha_s(\Lambda_{QCD}) = \frac{1}{\beta_0 \mathrm{log}(Q^2/\Lambda_{QCD}^2)}\quad .
 \end{equation*}
-Notably, since $\beta_0$ is positive also when considering 6 quark flavours, the strong coupling constant exhibits a monotonic decreasing trend as a function of $Q^2$
+The value of $\Lambda_{QCD}$ is determined by its specific definition. However, to obtain the value of the coupling constant measured at $Q^2 = M_Z^2$, an approximate value of $\Lambda_{QCD}$ is around 200 MeV.
+
+Measurements of the running of the coupling constant at diffent values of $Q$ are illustrated in Fig.~\ref{fig:alpha_s_running} and compared to the theoretical prediction at 5 loops. The agreement between the experimental data and the theoretical prediction is remarkable, confirming the validity of the QCD framework at high energy scales.
 
 
-
-AGGIUNGERE $\Lambda_{QCD}$ e parlare della libertà asintotica e del confinamento!!!
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/Chapter 1/Alpha_s_running.png}
+    \caption{Summary of measurements of \als as a function of the energy scale $Q$, compared to the running of the coupling computed at five loops, taking as an input the current PDG average, $\als(M_Z^2) = 0.1180 \pm 0.0009$ \gevcc.}
+    \label{fig:alpha_s_running}
+\end{figure}
