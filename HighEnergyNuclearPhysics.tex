@@ -352,7 +352,7 @@ The results of the lattice QCD simulations are in good agreement with the experi
 \end{figure}
 
 \section{Quark Gluon Plasma}
-The concept of deconfinement refers to the transition from a confined state to a state where quarks and gluons are no longer confined within hadrons, but are free to move in a larger volume. As modelled by the MIT bag model, non-perturbative QCD effects can be described in terms of an external pressure, which confines quarks and gluons within a finite volume. If the external pressure is overcome by the pressure due to the kinematic energy of the quarks and gluons, then the hadrons constituents are no longer confined, and a transition to a state called Quark-Gluon Plasma (QGP) occurs. Lattice QCD calculations are used to understand the properties of the QGP, and they predict that a strongly interacting system with zero net baryon density evolves smoothly from a confined (hadronic) towards a deconfined (quarks and gluons) state when its temperature is increased up to $\sim155$ MeV ($1.8\times 10^12$ K)~\cite{HotQCD:2014kol, Borsanyi:2013bia}, reaching energy densities of $\sim 1$~GeV/fm$^3$. During the transition, both deconfined and hadronic matter can exist, and the transition is called a crossover.
+The concept of deconfinement refers to the transition from a confined state to a state where quarks and gluons are no longer confined within hadrons, but are free to move in a larger volume. As modelled by the MIT bag model, non-perturbative QCD effects can be described in terms of an external pressure, which confines quarks and gluons within a finite volume. If the external pressure is overcome by the pressure due to the kinematic energy of the quarks and gluons, then the hadrons constituents are no longer confined, and a transition to a state called Quark-Gluon Plasma (QGP) occurs. Lattice QCD calculations are used to understand the properties of the QGP, and they predict that a strongly interacting system with zero net baryon density evolves smoothly from a confined (hadronic) towards a deconfined (quarks and gluons) state when its temperature is increased up to $\sim155$ MeV ($1.8\times 10^12$ K)~\cite{HotQCD:2014kol, Borsanyi:2013bia}, reaching energy densities of $\sim 1$~GeV/fm$^3$.
 
 \begin{figure}
   \centering
@@ -381,7 +381,7 @@ As anticipated above, the space-time evolution of the created system can be divi
 where $E$ is the energy and $p_z$ is the longitudinal momentum of the particle. In other terms, the Bjorken model assumes that the system is boost-invariant, i.e. independent of the longitudinal velocity. According to this model, the evolution of the system is described by the following stages: i. collision of the two nuclei, ii. pre-equilibrium, iii. QGP formation, iv. hadronisation, and v. freeze-out.
 
 \subsubsection{Collision}
-The two nuclei are accelerated to ultra-relativistic energies and are thus Lorentz-contracted in the direction of motion. The collision takes place in a very short time $\tau_\mathrm{coll} = 2R/\gamma$, where R is the nucleus radius and $\gamma$ the Lorentz factor (at LHC energies, the nuclei crossing time is of $\sim 0.005$~fm/$c$). During the collision, a large amount of energy is deposited in the interaction region, leading to the formation of a fireball with high energy densities.
+The two nuclei are accelerated to ultra-relativistic energies and are thus Lorentz-contracted in the direction of motion. The collision takes place in a very short time $\tau_\mathrm{coll} = 2R/\gamma$, where R is the nucleus radius and $\gamma$ the Lorentz factor. At LHC energies, the nuclei crossing time is of $\sim 0.005$~fm/$c$, which is much smaller than the time scale of the strong interaction $\tau_\mathrm{strong} \sim 1/\Lambda_{QCD} \sim 1$~fm/$c$. Particles produced in the collision through parton interactions mediated by the strong force are thus created once the colliding nuclei have already passed through each other and moved away from the interaction region. During the collision, a large amount of energy is deposited in the interaction region, leading to the formation of a fireball with high energy densities.
 
 \subsubsection{Pre-equilibrium}
 After $\tau_\mathrm{coll}$, secondary particles are produced from the energy deposited in the collision. In the Bjorken regime, it is possible to evaluate the energy density of the system as a function of time by measuring the transverse energy of the particles produced at midrapidity, where the net baryon density is zero. The energy density is given by:
@@ -392,7 +392,59 @@ where $A$ is the transverse area collision region, $\braket{m_\mathrm{T}}$ is th
 \begin{equation*}
     \braket{\mt} = \frac{\frac{\de \et(\tau_\mathrm{f})}{\de y}}{\frac{\de N(\tau_\mathrm{f})}{\de y}}\sim \left. \frac{\frac{\de \et}{\de \eta}}{\frac{\de N}{\de \eta}}\right\rvert_\mathrm{final~state}\quad ,
 \end{equation*}
-which leads to formation times of $\sim 0.35$~fm/$c$ at RHIC~\cite{PHENIX:2004vcz}, to which corresponds an energy density of $\sim 15$~GeV/fm$^3$.
+which leads to a formation time of $\sim 0.35$~fm/$c$ at RHIC~\cite{PHENIX:2004vcz}, to which corresponds an energy density of $\sim 15$~GeV/fm$^3$.
+
+\subsubsection{Quark-gluon plasma formation}
+The system of produced particles reaches thermal equilibrium through multiple scatterings at a proper time $\tau_\mathrm{eq}$, and the QGP is formed. Its evolution can be described using relativistic hydrodynamics, which can be used to predict $\tau_\mathrm{eq}$. Studies at RHIC allowed to constrain $\tau_\mathrm{eq}$ in the range of $0.6<\tau_\mathrm{eq}<1$~fm/$c$, corresponding to energy densities of $5.4 < \varepsilon_\mathrm{Bjorken}(\tau_\mathrm{eq})< 9$~GeV/fm$^3$, which are consistent with what is expected for QGP formation. 
+
+\subsubsection{Hadronisation}
+The deconfined system expands and cools down, until the temperature decreases below the pseudo-critical value for the transition crossover. The QGP undergoes a phase transition and hadronises, producing an expanding gas of colour-neutral particles. At LHC energies, this is expected to happen $\sim 10$~fm/$c$ after the QGP formation. This transition is associated with a sharp decrease in the entropy density of the system.
+
+\subsubsection{Freeze-out}
+During the hadron gas expansion, the particle density decreases to a point where the inelastic interactions cease. The moment in which this happens is called \emph{chemical freeze-out}, and takes place at around $T_\mathrm{chem}\sim160$~MeV~\cite{Andronic:2017pug}. The chemical abundances of the hadron gas cannot vary anymore, although elastic interactions, which change the momentum spectrum of the produced particles still occur. Once the temperature decreases below $T_\mathrm{therm}\sim 130$~MeV, the elastic interactions cease as well, and this is referred to as \emph{thermal freeze-out}. The particles then keep expanding without interactions (\emph{free-straming}), and are detected by the experimental apparatus.
+
+\subsection{Radial flow}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Figures/Chapter 1/spectra_run1.pdf}
+  \caption{Transverse momentum distributions of $\mathrm{\pi^+}$, $\mathrm{K^+}$, p, $\mathrm{K^0_s}$, $\mathrm{\Lambda}$, and $\mathrm{\phi}$ mesons for the 0--5\% and 80--90\% centrality intervals in Pb--Pb collisions at $\snn=2.76$ TeV. The data points are scaled by various factors for better visibility.}
+  \label{fig:RadialFlow}
+\end{figure}
+After the chemical freeze-out, inelastic interactions between the hadrons do not take place anymore. However, elastic interactions can still occur, leading to a modification of the momentum distribution of the particles. By studying the transverse momentum spectra of the particles produced in the collision, it is possible to extract information on the produced system.
+
+For a stationary thermal source with a temperature $T$, the Lorentz-invariant momentum distribution of the particles is given by:
+\begin{equation*}
+    E\frac{\de N}{\de^3p} = \frac{\de N}{\pt\de\pt\de\varphi\de y} = \frac{g_\mathrm{i}V}{(2\pi)^3} E \frac{1}{e^{(E-\mu_\mathrm{i})/T}\pm1}\quad ,
+\end{equation*}
+where $E$ is the energy of the particle, $g_\mathrm{i}$ is the degeneracy factor, $V$ is the volume of the source, $\mu_\mathrm{i}$ is the chemical potential of the particle of species i, and the + sign is for fermions while the $-$ sign is for bosons. By using the relation
+\begin{equation*}
+  \frac{\de N}{\pt\de\pt} = \frac{\de N}{\mt\de\mt}\quad ,
+\end{equation*}
+and by assuming that $e^{(E-\mu_\mathrm{i})/T}\gg1$, the transverse momentum spectrum of particles can be obtained by integrating over the azimuthal angle $\varphi$ and the rapidity $y$, leading to:
+\begin{equation}\label{eq:mt_scaling}
+    \frac{\de N}{\mt\de\mt} = \frac{g_\mathrm{i}V}{(2\pi)^2} \mt e^{\mu_\mathrm{i}/T} K_1\left(\frac{\mt}{T}\right) \xrightarrow[\mt\gg T]{} V'\sqrt{\mt}e^{-\mt/T}\quad .
+\end{equation}
+From Eq.~\ref{eq:mt_scaling} emerges that for a stationary thermal particle source with a temperature $T$, the transverse mass spectrum of the particles follows an exponential distribution, with a slope parameter $T$, and is independent of the particle species. This is known as the \mt-scaling of the transverse mass spectra, and is observed in pp and small-system collisions at low \sqs, with a slope parameter of $T\sim167$~MeV. However, in heavy-ion collisions, this description is not valid, as the QGP has a thermal pressure, since it is a thermalised system of deconfined quarks and gluons. The pressure difference between the QGP and the surrounding vacuum leads to a collective expansion of the fireball, which is called \emph{radial flow}. This causes the particles to be pushed in the transverse direction, leading to a modification of the transverse momentum spectra of the particles, which is characterised by a shift of the spectra towards higher \pt values, with a more pronounced effect for heavier particles, as shown in Fig.~\ref{fig:RadialFlow}. The radial flow can also be defined as a correlation between the velocity of an element of the system and its space-time position, which is superimposed on the random thermal motion of the particles.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Figures/Chapter 1/2014-Feb-27-cBlastWaveVsSTAR.pdf}
+  \caption{Results of blast-wave fits obtained with the ALICE experiment at the LHC, compared to similar fits at RHIC energies, for different centrality intervals.}
+  \label{fig:blast_wave_fit}
+\end{figure}
+
+The radial flow can be described by using phenomenological models, such as the blast-wave model~\cite{Schnedermann:1993ws}, which assumes that the particles are emitted from a thermal source with a collective velocity field. It relies on the Cooper-Frye prescription~\cite{Cooper:1974mv}, which assumes an instantaneous freeze-out of the particles in the radial direction, to calculate the transverse momentum spectra of the particles in terms of the temperature of the source, the collective velocity field, and the transverse flow profile. Results from SPS, RHIC, and LHC experiments show that the transverse momentum spectra of the particles produced in heavy-ion collisions can be well described by the blast-wave model, with a temperature of the source of around 110--120 MeV, almost independent of the centre-of-mass energy per nucleon pair, and a collective velocity field of around 0.5--0.6~$c$ in the most central collisions, with a growing trend with \snn, as shown in Fig.~\ref{fig:blast_wave_fit}. Although the blast-wave model provides a good description of the transverse momentum spectra of the particles produced in heavy-ion collisions, it is important to note that the parameters wich are evaluated with this model are extracted by fitting the \mt spectra of the particles, and could not be directly related to the properties of the QGP. Hence, it is important to study whether more sophisticated models, such as hydrodynamics, can provide a more detailed description of the space-time evolution of the system.
+
+Hydrodynamics-based models rely on energy and momentum conservation laws, which need to be expressed in a relativistic form since the expansion of the system is relativistic:
+\begin{equation*}
+    \partial_\mu T^{\mu\nu} = 0\quad ,~\mathrm{with}\quad T^{\mu\nu} = (\varepsilon + p)u^\mu u^\nu - p g^{\mu\nu}\quad ,
+\end{equation*}
+where $T^{\mu\nu}$ is the energy-momentum tensor, $\varepsilon$ is the energy density, $p$ is the pressure, $u^\mu$ is the four-velocity of the fluid element, and $g^{\mu\nu}$ is the metric tensor. An additional condition comes from the conservation of the baryon number, which is expressed as:
+\begin{equation*}
+    \partial_\mu (n_B u^\mu) = 0\quad ,
+\end{equation*}
+where $n_B$ is the baryon density. A further equation is needed to close the system, which is provided by the equation of state of the QGP, which relates the pressure to the energy density and the baryon density. As the fireball is in a non-equilibrium state in the early stages of the collision, the hydrodynamics equations need an initial condition to describe the system. This is usually provided by the Glauber model~\cite{Miller:2007ri}, which describes the collision of the two nuclei as a superposition of nucleon-nucleon collisions, and provides the initial energy density profile of the system. Monte Carlo simulations describing partonic showers such as UrQMD~\cite{Bleicher:1999xi} and AMPT~\cite{Lin:2004en} can also be used to provide the initial conditions for the hydrodynamics models. \\
+The hydrodynamics calculations provide a good description of the transverse momentum spectra of the particles produced in heavy-ion collisions, and the emerging parameters are similar to those obtained with the blast-wave model. In addition, hydrodynamics calculations and their extensions, such as viscous hydrodynamics, can be used to study other observables, such as the elliptic flow, which is a measure of the anisotropy of the particle emission in the transverse plane.
 
 
 \section{Strangenness enhancement}
