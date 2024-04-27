@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[12pt]{report}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
 \usepackage{tikz-feynman}
@@ -9,6 +9,7 @@
 \usepackage{xspace}
 \usepackage{braket}
 \usepackage{mathtools}
+\usepackage[a4paper, margin=3cm]{geometry}
 %\usepackage{biblatex}
 
 %\addbibresource{bibliography.bib}
@@ -20,14 +21,14 @@
 
 \begin{document}
 
-\maketitle
+%\maketitle
 
 \input{abbreviations}
 
-\include{HighEnergyNuclearPhysics}
+%\include{HighEnergyNuclearPhysics}
 \include{OpenHeavyFlavourPhysics}
 %\input{MachineLearning}
-\include{Reconstruction}
+%\include{Reconstruction}
 \bibliographystyle{utphys}   % Remember we use title in the biblio
 \bibliography{bibliography}
 
