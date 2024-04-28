@@ -9,7 +9,21 @@
 \usepackage{xspace}
 \usepackage{braket}
 \usepackage{mathtools}
+\usepackage{fancyhdr} % layout
 \usepackage[a4paper, margin=3cm]{geometry}
+\usepackage{lettrine}
+\input{RoyalIn.fd}
+
+\renewcommand{\LettrineFontHook}{\usefont{U}{RoyalIn}{xl}{n}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
+
+\input RoyalIn.fd
+
+\pagestyle{fancy}
+\fancyhead[C]{\chaptername~\thechapter~-- \leftmark }
+\fancyhead[L]{}
+\fancyhead[R]{}
+
 %\usepackage{biblatex}
 
 %\addbibresource{bibliography.bib}
