@@ -1,20 +1,30 @@
 \chapter{\dpl\ and \ds\ reconstruction strategy in proton-proton collisions}
 
-Due to their mean proper decay lengths (\ct) of \SI{151.2}{\micro\meter} and \SI{309.8}{\micro\meter} respectively~\cite{pdg}, \ds\ and \dpl\ mesons and their charge conjugate cannot be directly detected by the ALICE detector, as they typically decay before reaching the detector. Consequently, their production is inferred through the reconstruction of their decay products. This analysis exploits their hadronic decays into $\ds (\dpl) \rightarrow \mathrm{\phi\pi^+ \rightarrow K^+K^-\pi^+}$ and their charge conjugates, with a branching ratio of $2.21\times10^{-2}$ ($2.69\times10^{-3}$). The reconstruction of D meson decays into hadronic final states allows for a more precise measurement, as semileptonic decays are affected by larger uncertainties due to the presence of neutrinos in the final state.
+Due to their mean proper decay lengths (\ct) of \SI{151.2}{\micro\meter} and \SI{309.8}{\micro\meter} respectively~\cite{pdg}, \ds\ and \dpl\ mesons and their charge conjugate cannot be directly detected by the ALICE detector, as they typically decay before reaching the detector. Consequently, their production is inferred through the reconstruction of their decay products. This analysis exploits their hadronic decays into $\ds (\dpl) \rightarrow \mathrm{\phi\pi^+ \rightarrow K^+K^-\pi^+}$ and their charge conjugates, with a branching ratio of $2.21\times10^{-2}$ ($2.69\times10^{-3}$)~\cite{pdg}. An additional hadronic decay channel of the \dpl meson with a larger BR of $9.38\times10^{-2}$~\cite{pdg} could be exploited~\cite{ALICE:2017olh}, but the reconstruction of the two D-mesons species in the same decay channel allows for the cancellation of many of the systematic uncertainties affecting the measurement, leading to a more precise \ds/\dpl production yield ratio measurement. The choice of reconstructing D mesons through their decays into an hadronic final state allows for the full reconstruction of the decay topology, therefore providing a more precise measurement, as semileptonic decays are affected by larger uncertainties due to the presence of neutrinos in the final state, which are not detected. In addition, the decay into the resonant $\phi(1020)$ state opens up the possibility of exploiting the invariant mass of the $\phi$ meson for the selection of the D-meson candidates.
 
-The spatial resolution capabilities of the ALICE detector described in Chapter~\ref{chap:ALICE} allow for the separation of the secondary decay vertices of D mesons from the primary interaction vertex, allowing to conduct an analysis based on the reconstruction and selection of secondary-vertex topologies characterised by relatively large separations from the primary interaction vertex. Furthermore, particle-identification (PID) information are exploited to improve the selection of the D mesons and their decay products and thus to reduce the background.
+\ds\ and \dpl\ mesons (and their charge conjugates) are reconstructed in three differen steps: i. firstly, charged tracks are reconstructed at midrapidity ($\lvert\eta\rvert < 0.8$) exploiting the ITS and TPC detectors; ii. \ds\ and \dpl\ candidates are contructed by combining triplets of tracks with the appropriate charge signs, i.e., (+, --, +) for \ds\ and \dpl\ mesons, and (--, +, --) for their antiparticles; iii. finally, the \ds\ and \dpl\ candidates are selected by applying a set of topological, kinematical and Particle-IDentification (PID)  selections. Given the large number of tracks produced in a pp collision, the vast majority of the constructed \ds\ and \dpl\ candidates are obtained from the combination of uncorrelated tracks, which do not originate from the same decay vertex. This results in a large \emph{combinatorial background}, which has to be suppressed in order to extract the signal of the D mesons. 
 
-Two distinct categories of D mesons emerge based on their production mechanisms: \emph{prompt} and \emph{feed-down} D mesons. The former originate directly from the hadronisation of charm quarks or from the strong decay of excited open-charm or charmonium states. Conversely, feed-down D mesons are produced from the decay of hadrons containing a beauty quark. Decay vertices of feed-down D mesons are on average more displaced from the interaction vertex with respect to promptly-produced ones, due to the larger mean proper decay lengths of beauty hadrons (\ct $\sim$ 500 µm~\cite{pdg}) as compared to charm hadrons. Therefore, exploiting the selection of displaced decay-vertex topologies, it is possible not only to separate D mesons from the combinatorial background, but also enables the discrimination between feed-down and prompt D mesons.
+The spatial resolution capabilities of the ALICE detector described in Chapter~\ref{chap:ALICE} enable the separation of the secondary decay vertices of D mesons from the primary interaction vertex, which consents the development of an analysis based on the reconstruction and selection of secondary-vertex topologies characterised by relatively large separations from the primary interaction vertex. Furthermore, PID information can be exploited to improve the selection of the D mesons and their decay products and reduce the background.
+
+Two distinct categories of D mesons emerge based on their production mechanisms: \emph{prompt} and \emph{non-prompt} (also referred to as \emph{feed-down}) D mesons. Decay vertices of feed-down D mesons are on average more displaced from the interaction vertex with respect to promptly-produced ones, due to the larger mean proper decay lengths of beauty hadrons (\ct $\sim$ 500 µm~\cite{pdg}) as compared to charm hadrons. Therefore, by exploiting selection criteria based on displaced decay-vertex topologies, it is possible not only to separate D mesons from the combinatorial background, but also enables the discrimination between feed-down and prompt D mesons.
 
 \section{Data sample and event selection}
-The analyses reported in this Thesis are performed on a dataset of pp collisions at a centre-of-mass energy of \thirteen, collected by the ALICE detector during the 2022 data-taking period and on a dataset of Pb--Pb collision at a centre-of-mass energy per nucleon-nucleon collision of \fivenn collected during 2023. \textcolor{red}{Aggiungere selezioni dei dati e fiducial acceptance!}
+The analysis reported in this Thesis is performed on a dataset of pp collisions at a centre-of-mass energy of \thirteen, collected by the ALICE detector during the 2022 data-taking period. The data sample is collected using a Minimum-Bias trigger (the ``Sel8" trigger), which selects events which satisfy the requirement of having a signal coincidence in the FT0-A and FT0-C detectors. Furthermore, because it is observed that the readout of the TPC (which happens at the end of each TF) causes a drop in the track reconstruction efficiency, it was decided to exclude the collisions read out during the TPC readout (\emph{TF border} selection). An additional requirement is imposed on the vertex position along the beam axis, $\lvert z_{\mathrm{vtx}}\rvert<10$~cm, to ensure that the primary vertex is located within the region of the detector where the tracking efficiency is optimal. Of the total 59.2 billion collected events, only 54.7 billion have been analysed. Around 3\% of the events are rejected due to the minimum bias trigger, about 1\% due to the TF border selection, and 4\% of the events are rejected due to the requirement on the $z_{\mathrm{vtx}}$ position. A summary of the event selection is shown in Fig.~\ref{fig:EvSel}.
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/Chapter 4/EventSelection.pdf}
+    \caption{Summary of the event selection criteria applied to the data sample.}
+    \label{fig:EvSel}
+\end{figure}
 
 \section{\ds and \dpl decay-vertex reconstruction and selection}
-\ds\ and \dpl\ mesons (and their charge conjugates) are reconstructed though their hadronic decay channel $\ds, \dpl \rightarrow \mathrm{\phi\pi^+ \rightarrow K^+K^-\pi^+}$. are constructed by combining triplets of tracks with the appropriate charge signs, i.e., (+, --, +) for \ds\ and \dpl\ mesons, and (--, +, --) for their antiparticles. The decay vertex of the candidate is reconstructed through a minimisation of a $\chi^2$-like quantity, denoted as D:
+ The decay vertex of the candidate is reconstructed through a minimisation of a $\chi^2$-like quantity, denoted as D:
 \begin{equation}
     D = \sqrt{\sum_{i=1}^3 \left[\left(\frac{x_i-x_0}{\sigma_{x_i}}\right)^2 + \left(\frac{y_i-y_0}{\sigma_{y_i}}\right)^2 +\left(\frac{z_i-z_0}{\sigma_{z_i}}\right)^2\right]}\quad ,
 \end{equation}
-where ($x_i,y_i,z_i$) and ($\sigma_{x_i},\sigma_{y_i},\sigma_{z_i}$) represent the position and the uncertainty of the i-th track at the point of closest approach, respectively, while ($x_0,y_0,z_0$) denotes the position of the reconstructed vertex. The invariant mass and momentum of the \ds\ and \dpl\ candidates are computed from the energy and momentum of the measured tracks evaluated at the point of closest approach to the decay vertex. The momentum of the candidate is defined as the sum of the momenta of the three track. For the invariant mass computation, the kaon mass is always assigned to the track with opposite charge sign with respect to the D-meson candidate (\emph{opposite-sign track}). For the two \emph{like-sign tracks}, the two pion-kaon mass hypothesis combinations \big(i.e. ($\mathrm{K^+K^-\pi^+}$) and ($\mathrm{\pi^+K^-K^+}$) for positively charged candidates\big) are considered. 
+where ($x_i,y_i,z_i$) and ($\sigma_{x_i},\sigma_{y_i},\sigma_{z_i}$) represent the position and the uncertainty of the i-th track at the point of closest approach, respectively, while ($x_0,y_0,z_0$) denotes the position of the reconstructed vertex. The invariant mass and momentum of the \ds\ and \dpl\ candidates are computed from the energy and momentum of the measured tracks evaluated at the point of closest approach to the decay vertex. The momentum of the candidate is defined as the sum of the momenta of the three tracks. For the invariant mass computation, the kaon mass is always assigned to the track with opposite charge sign with respect to the D-meson candidate (\emph{opposite-sign track}). For the two \emph{like-sign tracks}, the two pion-kaon mass hypothesis combinations \big(i.e. ($\mathrm{K^+K^-\pi^+}$) and ($\mathrm{\pi^+K^-K^+}$) for positively charged candidates\big) are considered. 
 
 A lot of triplets can be built from the tracks produced in a pp collision, and this number grows even more in a Pb--Pb collision, where the charged-particles multiplicity is much larger. Thus, many \ds- and \dpl-meson candidates are created, the vast majority of them being combinatorial background. To increase the signal-over-background ratio and the statistical significance of the measurement, tight selections are required. The analyses presented in this Thesis exploit several selection criteria, which can be divided into:
 \begin{enumerate}[i]
@@ -22,22 +32,109 @@ A lot of triplets can be built from the tracks produced in a pp collision, and t
     \item Selections based on the decay topology and kinematics
     \item Particle identification of the decay products
 \end{enumerate}
-
 In the following, the applied selections are described in more detalis
 
 \subsection{Track-quality selections}
-Only tracks that successfully pass strict quality and kinematic requirements are considered eligible for inclusion in the construction of \ds- and \dpl-meson candidates. In particular, only ITS-TPC tracks with at least 70 (out of \textcolor{red}{XX}) associated space points in the TPC and are selected.\textcolor{red}{Aggiungere info ITS e selezioni di singola traccia}
+Only tracks that successfully pass strict quality and kinematic requirements are considered eligible for inclusion in the construction of \ds- and \dpl-meson candidates. In particular, only ITS-TPC tracks with at least 70 (out of a maximum of 159) track-associated space points in the TPC, and a crossed rows (i.e., total number of hit TPC pad rows) over findable clusters (i.e., pad rows which could potentially be hit, given the track's trajectory) ratio of at least 0.8 are selected. To improve the vertex reconstruction procedure, at least one hit in the 3 innermost layers of the ITS, which compose the ITS inner barrel, was required.
+
+Secondary vertices of \ds- and \dpl-meson candidates are constructed using tracks having $\lvert\eta\rvert < 0.8$ and $\pt > 0.3$~\gevc. A track-quality requirement of $\chi^2$ per TPC cluster smaller than 4 has been applied. A cut on the daughter-track transverse impact parameter projection in the transverse plane $d_0^{xy}$ was applied, requiring $d_0^{xy} > \SI{25}{\micro\meter}$ for tracks with $\pt < 2~\gevc $. These selections limit the rapidity acceptance of D mesons, which steeply decreases for $\lvert y\rvert > 0.5$ at low \pt and for $\lvert y\rvert > 0.8$ for $\pt \gtrsim 5~\gevc$, as shown in Fig.~\ref{fig:RapidityAcceptance}. The applied track-quality selections criteria are summarised in Table~\ref{tab:trackSel}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/Chapter 4/PtVsY.pdf}
+    \caption{Rapidity and transverse momentum distribution of reconstructed \ds and \dpl mesons in pp collisions at \thirteen. \textcolor{red}{Sostituire con i dati.}}
+    \label{fig:RapidityAcceptance}
+\end{figure}
+
+\begin{table}[htb]
+  \begin{center}
+    \begin{tabular}{c|c}
+        \toprule
+      Single-track selection & Value\\
+      \midrule
+      Number of TPC crossed-rows $>$  & 70 \\
+      $\lvert\eta\rvert <$                         & 0.8\\
+      $\pt >$                                       & 0.1 \gevc\\
+      $\chi^2_\mathrm{TPC}$/TPC clusters $<$                     & 4\\
+      $\chi^2_\mathrm{ITS}$/ITS clusters $<$                     & 36\\
+      ITS matching & At least 1 cluster in L0, L1, L2\\
+      \bottomrule
+    \end{tabular}
+    \caption{Applied single-track selection criteria }
+    \label{tab:trackSel}
+  \end{center}
+\end{table}
+
 
 \subsection{Topological selections}
-\ds\ and \dpl\ mesons exhibit a displaced decay vertex topology, which can be used to separate the signal from the uninteresting combinatorial background. Moreover, promptly produced D mesons exhibit different topological features compared to feed-down D mesons, enabling further discrimination between the two production mechanisms. This differentiation potentially offers insights into beauty-quark production through the measurement of open-charm states. These selections are tuned as a function of the \pt\ in order to increase the signal-over-backroung and the statistical significance of the measurement. The different topological selections are presented herein. The corresponding distributions of variables are shown for the signal, which is divided into prompt and feed-down contributions and obtained from Monte Carlo simulations, as well as the combinatorial background, which is obtained in a invariant-mass region away from the signal region, denoted as \emph{sidebands}. \textcolor{red}{Rifare figure cambiando colori e usando le sidebands}
+\ds\ and \dpl\ mesons exhibit a displaced decay vertex topology, which can be used to separate the signal from the uninteresting combinatorial background. Moreover, promptly produced D mesons exhibit different topological features compared to feed-down D mesons, enabling further discrimination between the two production mechanisms. This differentiation potentially offers insights into beauty-quark production through the measurement of open-charm states. 
 
+The topological selections are tuned as a function of the \pt\ in order to increase the signal-over-backroung and the statistical significance of the measurement. The different selections are presented herein. The corresponding distributions of variables are shown for the signal, which is divided into prompt and feed-down contributions and obtained from Monte Carlo simulations, as well as the combinatorial background, which is obtained in a invariant-mass region away from the signal region, denoted as \emph{sidebands}.
+
+\subsubsection{Decay Length}
 \begin{figure}
     \centering
     \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/DecayLength.pdf}
-    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/DecayLength.pdf}
-    \caption{Caption}
-    \label{fig:enter-label}
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/DecayLengthXY.pdf}
+    \caption{Distributions of decay length (left panel) and its projection on the transverse plane (right panel)  for \ds mesons in pp collisions at \thirteen in the $4 < \pt < 6$~\gevc interval. The distributions
+    are shown for prompt \ds mesons (blue), non-prompt \ds mesons (orange), and combinatorial background
+    (green). For prompt and non-prompt \ds mesons, the distributions are taken from Monte Carlo
+    simulations, whereas for combinatorial background they are taken from the data sidebands.}
+    \label{fig:DecayLength}
+\end{figure}
+The decay length $L$ is defined as the distance between the primary and secondary vertices. It provides an approximation of the actual decay length of \ds\ and \dpl\ mesons, as the particle's curvature resulting from the motion in the presence of a magnetic field is not considered. However, given the small mean proper decay length of $\sim 150~(310)$ µm of \ds\ (\dpl) mesons, this effect can be neglected. 
+
+This is one of the most important variables to distinguish between the signal and the combinatorial background, since the displaced topology of the signal shifts the decay length distribution towards greater values. Furthermore, since beauty-hadron decay verexes are not reconstructed, the measured decay lenght of non-prompt D-mesons also accounts for the decay lenght of their parent hadrons. As a consequence, the resulting decay lenght distribution for feed-down D-mesons is particularly shifted towards larger values, allowing for an easier separation of this production mechanism from the background. The distribution of the decay length also depends on the \pt\ of the D meson, because of the Lorentz boost which contributes to an increase in the travelled distance measured in the laboratory reference frame. Moreover, since the mean proper decay length of \dpl meson is about twice as large as that of the \ds meson, the decay length distribution of the former is shifted towards larger values. This allows for the discrimination of the two D-meson species.
+
+In addition to the decay length, the projection of the decay length on the transverse plane can also be used to select \ds or \dpl signal. This variable is particularly useful as it exploits the better resolution of the transverse plane with respect to the longitudinal one of the ALICE experiment. Previous measurements of D mesons also leveraged the normalised decay length, defined as the ratio between the decay length and its uncertainty, to further improve the signal extraction. Although this variable demonstrated a good separation power, it was not used in this analysis, due to possible biases introduced by the uncertainty description in the Monte Carlo simulations.
+
+The distributions of decay length and its projection on the trasverse plane are shown in Fig.~\ref{fig:DecayLength} for signal and combinatorial background candidates reconstructed in the $4 < \pt < 6$~\gevc interval. 
+
+\subsubsection{Cosine of pointing angle}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/Cpa.pdf}
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/CpaXY.pdf}
+    \caption{Distributions of the cosine of the pointing angle (left panel) and its
+    projection on the transverse plane (right panel) for \ds mesons in pp collisions at \thirteen in the $4 < \pt < 6$~\gevc interval. The distributions are shown for prompt \ds mesons (blue), non-prompt \ds mesons (orange), and combinatorial background (green). For prompt and non-prompt \ds mesons, the distributions are taken from Monte Carlo simulations, whereas for combinatorial background they are taken from the data sidebands.}
+    \label{fig:PointingAngle}
 \end{figure}
 
-\subsubsection{Decay Length}
-The decay length is defined as the distance between the primary and secondary vertices. For \ds\ and \dpl\ mesons, the decay length provides an approximation of the actual decay length, as the particle's curvature resulting from the motion in the presence of a magnetic field is not considered. However, given the small mean proper decay length of $\sim 150 (300)$ µm of the \ds\ (\dpl) mesons, this effect is negligible. This is one of the most important variables to distinguish between the signal and the combinatorial background, since the displaced topology of the signal shifts the decay length distribution towards greater values. Furthermore, since beauty hadrons have a larger mean proper decay length than \ds\ and \dpl\ mesons, the feed down decay length distribution is particularly shifted towards lager values, allowing for an easier separation of this production mechanism from the background.  The distribution of the decay length also depends on the \pt\ of the D meson, because of the Lorentz boost which increases the travelled distance in the laboratory reference frame. 
+The pointing angle $\theta_\mathrm{p}$ is defined as the angle between the flight direction of the D meson, obtained from the line connecting the primary and secondary vertices, and the direction of the reconstructed D meson momentum. This variable is also defined using only the transverse components of these quantities ($\theta_\mathrm{p}^{\mathrm{xy}}$), to exploit the better resolution in the $x$ and $y$ coordinates than in the $z$ coordinate. In an ideal scenario where particles' momentum is perfectly reconstructed, the cosine of the pointing angle for promptly-produced D mesons would be equal to 1, while that of feed-down D mesons would be distributed around 1, but with a tail towards lower values as the flight direction of the D meson is not equal to that of the parent beauty hadron. The pointing angle for the combinatorial background, on the other hand, could assume any value with the same probability. The pointing angle is therefore particularly useful to separate the signal from the combinatorial background. The distributions of the cosine of the pointing angle and its projection in the transverse plane are shown in Fig.~\ref{fig:PointingAngle} for signal and combinatorial background candidates reconstructed in the $4 < \pt < 6$~\gevc interval. Due to the finite resolution of the tracking detectors, the pointing angle is not perfectly reconstructed, leading to a distribution of the cosine of the pointing angle for prompt \ds that is peaked at 1, but with a tail towards lower values.
+
+Similarly to the decay length, also $\theta_\mathrm{p}$ evolves with the D-meson transverse momentum. Because of the Lorentz boost, the direction of the daughter particles of the D meson is more collimated with the D-meson flight direction at higher \pt. This results in a distribution of the cosine of the pointing angle that is more peaked at 1 for higher \pt values.
+
+\subsubsection{Impact parameter in the transverse plane}
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/ImpactParameterXY.pdf}
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/ImpactParameter0.pdf}
+    \caption{Distributions of the projection of the impact parameter on the transverse plane for \ds mesons (left panel) and for one of the opposite-sign daughter tracks (right panel) in pp collisions at \thirteen in the $4 < \pt < 6$~\gevc interval. The distributions are shown for prompt \ds mesons (blue), non-prompt \ds mesons (orange), and combinatorial background (green). For prompt and non-prompt \ds mesons, the distributions are taken from Monte Carlo simulations, whereas for combinatorial background they are taken from the data sidebands. }
+    \label{fig:ImpactParameter}
+\end{figure}
+The projection of the impact parameter on the transverse plane $d_0^{xy}$ is defined as the distance of closest approach between the reconstructed flight line of the D-meson and the primary vertex, projected in the $xy$ plane. It is expected to be very close to zero for promptly-produced D mesons, with any deviation due to the detector resolution. Thanks to the better momentum and vertexing resolution, its distribution becomes narrower at high \pt. It is a powerful variable not only to separate the signal from the combinatorial background, but also to discriminate between prompt and feed-down D mesons, as the latter have a much broader impact parameter distribution, as shown in the left panel of Fig~\ref{fig:ImpactParameter}. In addition, also the projection of the daughter tracks' impact parameter to the primary vertex projected on the transverse plane is used to select the signal. Since the combinatorial background does not have a secondary vertex, many of the tracks used to construct such candidates are produced directly in the primary vertex. This results in a narrow distribution of the prongs' impact parameter for such candidates. On the contrary, the displaced decay vertex of the signal candidates leads to a broader distribution of the impact parameter for prompt D-meson candidates, and to an even broader one for the non-prompt contribution to the signal, as shown in the right panel of Fig.~\ref{fig:ImpactParameter}.
+
+\subsection{Kinematic selections}
+In addition to the selections based on the decay topology, kinematic selections are also applied to increase the signal-over-background ratio and the statistical significance of the measurement.
+\begin{figure}[tb]
+    \centering
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/DeltaMassKK.pdf}
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/AbsCos3PiK.pdf}
+    \caption{Distributions of the difference between the reconstructed and PDG mass of the $\phi$ meson (left panel) and the cosine cubed of the K-$\pi$ angle in the KK rest frame (right panel) for \ds mesons in pp collisions at \thirteen in the $4 < \pt < 6$~\gevc interval. The distributions are shown for prompt \ds mesons (blue), non-prompt \ds mesons (orange), and combinatorial background (green). For prompt and non-prompt \ds mesons, the distributions are taken from Monte Carlo simulations, whereas for combinatorial background they are taken from the data sidebands.}
+    \label{fig:DeltaMassPhi}
+\end{figure}
+
+\subsubsection{Difference between reconstructed and PDG mass of the \boldmath$\phi$ meson}
+\begin{sloppypar}
+This selection exploits the production of an intermediate resonant $\phi(1020)$-meson state in the considered decay channel of the D mesons, whose invariant mass of \mbox{$M_\phi = (1019.461\pm0.016)$}~\mevcc~\cite{pdg} is well known. The $\mathrm{K^+K^-}$ pair produced in the $\phi$-meson decay is expected to have an invariant mass very close to the PDG value, as the $\phi$ resonance is narrow ($\Gamma_\phi = 4.249\pm0.013$~\mevcc~\cite{pdg}). Therefore, the difference between the reconstructed and the PDG mass of the $\phi$ meson $\lvert\Delta M(\mathrm{KK})\rvert$ is expected to be close to zero for signal candidates, while the distribution for combinatorial background is expected to be uniformly distributed.
+\end{sloppypar}
+Moreover, two possible $\mathrm{K^+K^-}$ pairs can be built for each triplet of tracks, depending on the mass hypothesis assigned to the like-sign tracks (e.g., for a \ds decay, both the $\mathrm{K^+K^-\pi^+}$ and $\mathrm{\pi^+K^-K^+}$ mass hypotheses can be considered). Both hypotheses are considered in the reconstruction, and the selection on $\lvert\Delta M(\mathrm{KK})\rvert$  results extremely helpful not only in rejecting the combinatorial background, but also the reflections, i.e., D mesons with the wrongly-assigned mass hypothesis.
+
+
+The distribution of this variable is shown in the left panel of Fig.~\ref{fig:DeltaMassPhi} for signal and combinatorial background candidates reconstructed in the $4 < \pt < 6$~\gevc interval.
+
+\subsubsection{Cosine cubed of the K-\boldmath$\pi$ angle in the KK rest frame}
+The decay of a (pseudoscalar) D-meson to a (vector) $\phi$-meson and a (pseudoscalar) $\pi^+$ final state results in an alignment of the spin of the $\phi$ meson transverse to the direction of motion of the $\phi$ relative to the D-meson, due to elicity conservation~\cite{ATLAS:2015igt}. As a consequence, the distribution of $\mathrm{cos}\left(\theta'(K)\right)$, where $\theta'(K)$ is the angle between one of the kaons and the pion in the $\mathrm{K^+K^-}$
+rest frame, follows a $\mathrm{cos}^2\left(\theta'(K)\right)$ shape, which in turn implies a flat distribution for the $\mathrm{cos}^3\left(\theta'(K)\right)$ variable, in case of signal. In contrast, the combinatorial background has a flat distribution for $\mathrm{cos}\left(\theta'(K)\right)$, and its $\mathrm{cos}^3\left(\theta'(K)\right)$ distribution peaks at zero. This variable is particularly useful to separate the signal from the combinatorial background, as shown in the right panel of Fig.~\ref{fig:DeltaMassPhi}.
+
+\subsection{Particle identification selections}
