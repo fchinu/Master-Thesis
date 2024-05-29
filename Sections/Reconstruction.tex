@@ -19,11 +19,18 @@ The analysis reported in this Thesis is performed on a dataset of pp collisions 
     \label{fig:EvSel}
 \end{figure}
 
-\section{\ds and \dpl decay-vertex reconstruction and selection}
+\section{\texorpdfstring{\ds and \dpl reconstruction workflow}{Ds+ and D+ reconstruction workflow}}
+The reconstruction of \ds and \dpl mesons is a complex process performed in many subsequent steps. As stated in Chapter~\ref{chap:ALICE}, the reconstructed data are stored in AOD format. This format contains essential information about the reconstructed tracks, which are parameterized at the innermost update point, i.e., the closest point to the primary vertex with a detected track signal. Since the track parametrisation is not the same for each track, as missing hits in the ITS can lead to different radii of the innermost update point, the tracks are propagated to the point of closest approach to the primary vertex, and their parameters are updated accordingly. Tracks are propagated in the \code{track-propagator} workflow, and only those passing a set of quality requirements are selected. 
+
+Because of continuous readout, there exists the possibility that a single track is found to be compatible with multiple collisions (these tracks are named \emph{ambiguous tracks}). In the AOD files, the track is only associated with the first compatible collision. In order to increase the reconstruction efficiency, the \code{track-to-collision associator} workflow associates each track with all compatible collisions. This process significantly increases the reconstruction efficiency, especially for 2- or 3-body decaying particles.
+
+For each considered collision, combinations of two or three tracks are built in the \code{track-index-skim-creator} workflow, which produces a table of track indices for combinations passing a set of loose selection criteria, which depend on the considered hadron species. Candidates for each particle species and their decay vertices are created in the \code{candidate-creator} workflow, and those passing the more stringent analysis selection criteria are flagged in the \code{candidate-selector} workflow. The \code{tree-creator} (\code{analysis-task}) workflow produces the final output of the analysis, which consists of a ROOT tree (several ROOT histograms) containing the properties of selected candidates.
+
+\section{\texorpdfstring{\ds and \dpl decay-vertex reconstruction and selection}{Ds+ and D+ decay-vertex reconstruction and selection}}
  The decay vertex of the candidate is reconstructed through a minimisation of a $\chi^2$-like quantity, denoted as D:
-\begin{equation}
+\begin{equation*}
     D = \sqrt{\sum_{i=1}^3 \left[\left(\frac{x_i-x_0}{\sigma_{x_i}}\right)^2 + \left(\frac{y_i-y_0}{\sigma_{y_i}}\right)^2 +\left(\frac{z_i-z_0}{\sigma_{z_i}}\right)^2\right]}\quad ,
-\end{equation}
+\end{equation*}
 where ($x_i,y_i,z_i$) and ($\sigma_{x_i},\sigma_{y_i},\sigma_{z_i}$) represent the position and the uncertainty of the i-th track at the point of closest approach, respectively, while ($x_0,y_0,z_0$) denotes the position of the reconstructed vertex. The invariant mass and momentum of the \ds\ and \dpl\ candidates are computed from the energy and momentum of the measured tracks evaluated at the point of closest approach to the decay vertex. The momentum of the candidate is defined as the sum of the momenta of the three tracks. For the invariant mass computation, the kaon mass is always assigned to the track with opposite charge sign with respect to the D-meson candidate (\emph{opposite-sign track}). For the two \emph{like-sign tracks}, the two pion-kaon mass hypothesis combinations \big(i.e. ($\mathrm{K^+K^-\pi^+}$) and ($\mathrm{\pi^+K^-K^+}$) for positively charged candidates\big) are considered. 
 
 A lot of triplets can be built from the tracks produced in a pp collision, and this number grows even more in a Pb--Pb collision, where the charged-particles multiplicity is much larger. Thus, many \ds- and \dpl-meson candidates are created, the vast majority of them being combinatorial background. To increase the signal-over-background ratio and the statistical significance of the measurement, tight selections are required. The analyses presented in this Thesis exploit several selection criteria, which can be divided into:
@@ -138,3 +145,50 @@ The decay of a (pseudoscalar) D-meson to a (vector) $\phi$-meson and a (pseudosc
 rest frame, follows a $\mathrm{cos}^2\left(\theta'(K)\right)$ shape, which in turn implies a flat distribution for the $\mathrm{cos}^3\left(\theta'(K)\right)$ variable, in case of signal. In contrast, the combinatorial background has a flat distribution for $\mathrm{cos}\left(\theta'(K)\right)$, and its $\mathrm{cos}^3\left(\theta'(K)\right)$ distribution peaks at zero. This variable is particularly useful to separate the signal from the combinatorial background, as shown in the right panel of Fig.~\ref{fig:DeltaMassPhi}.
 
 \subsection{Particle identification selections}
+One of the distinctive features of the ALICE detector are the excellent PID capabilities in a wide range of momentum, achieved by combining the information from different detectors. 
+
+The ITS was used for its PID information during the LHC data-taking Runs~1 and 2, when the analogue readout of the SDD and SSD layers allowed for the measurement of the specific energy loss \dedx of charged particles from the charge deposited in the detector. The upgraded ITS~2 is not capable of providing such information, as the readout is now fully digital. Nonetheless, new PID techniques based on ML algorithms exploiting information such as the cluster shape and size are being developed and tested for the ITS~2. Preliminary results show that the ITS~2 PID is capable of achieving a good separation between protons and other particles, as shown in the left panel of Fig.~\ref{fig:ITSTPCPID}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/deltabetap-tpctagged.pdf}
+    \includegraphics[width=0.48\linewidth]{Figures/Chapter 4/tpcdedx_1.pdf}
+    \caption{Left: ITS 2 particle identification performance in pp collisions at \mbox{\thirteen} using a Boosted Decision Tree (BDT) regressor. From the cluster size, the regressor predicts the velocity $\beta$ ($\beta_\mathrm{BDT}$) of particles. The regressor performance is evaluated for $0.4 < p < 0.6$~\gevc, through the difference between $\beta_\mathrm{BDT}$ and $\beta\mathrm{_p^{exp}} = \frac{p}{\sqrt{p^2 + m_\mathrm{p}^2}}$. Right: Specific energy loss distribution \dedx in the TPC for pp collisions at \thirteen. The curves obtained with a fit using the ALEPH parametrisation of the Bethe-Bloch formula for electrons, muons, pions, kaons, protons, deuterium and tritium are also shown. Figures taken from the ALICE figure repository~\cite{ALICE_figures}.}
+    \label{fig:ITSTPCPID}
+\end{figure}
+
+The TPC is the main PID detector in the ALICE experiment, as it provides a simultaneous measure of the specific energy loss via the charge produced in the drift voume and deposited in its 159 pad rows, the charge, and the momentum of each particle traversing the detector gas. A truncated mean of the \dedx samples is calculated discarding the 40\% highest-charge clusters, which ensures the removal of the Landau tail of the \dedx distribution caused by $\delta$-rays, which are produced from the ionisation of the gas by the electrons produced in the primary ionisation. The particle identification is based on the comparison of the measured \dedx with the expectation for a specific particle species with a certain momentum $p$. The expected \dedx is described by the Bethe-Bloch formula, and is typically parametrised with a function originally proposed by the ALEPH collaboration~\cite{Blum:2008nqe}:
+\begin{equation*}
+    f(\beta\gamma) = \frac{P_1}{\beta^{P_4}}\left[P_2 - \beta^{P_4} - \log\left(P_3 + \frac{1}{(\beta\gamma)^{P_5}}\right)\right]\quad .
+\end{equation*}
+In this parametrisation, $\beta$ and $\gamma$ are the particle velocity and Lorentz factor, respectively, and $P_{1-5}$ are the parameters of the fit function. The \dedx distribution in the TPC is shown in the right panel of Fig.~\ref{fig:ITSTPCPID} for pp collisions at \thirteen. The curves obtained with a fit using the ALEPH parametrisation of the Bethe-Bloch formula for electrons, muons, pions, kaons, protons, deuterium and tritium are also shown. While in the non-relativistic low momentum region ($p \leq 1$~\gevc) p, K and $\mathrm{\pi}$ can be separated on a track-by-track basis, at higher momenta, in the relativistic rise region, particles can still be identified on a statistical basis via multi-Gaussian fits. This is possible because the truncated-mean method produces a \dedx peak with a gaussian shape down to three orders of magnitude for long tracks (at least 130 clusters)~\cite{ALICE:2014sbx}.
+
+The TOF detector is dedicated to PID in the intermediate momentum range, up to 2.5~\gevc for pions and kaons, and up to 4~\gevc for protons. In this region, the TPC is not able to provide a sufficient separation between the different particle species. The TOF detector is based on the measurement of the time of flight of charged particles between the interaction point and the detector. The start time is provided by the FT0 forward-rapidity detectors, and a total time resolution of the 80~ps is achieved, allowing for a separation of the different particle species based on the time of flight. The TOF PID performance is shown in Fig.~\ref{fig:TOFPID} for \pbpb collisions at $\sqrt{s_\mathrm{NN}} = 5.02$~\tev. The large background is due to tracks that are incorrectly matched to TOF hits in high-multiplicity \pbpb collisions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{Figures/Chapter 4/TOFBeta_pp.png}
+    \caption{$\beta$ parameter measured with the TOF detector as a function of the momentum $p$ measured by the TPC detector in \pbpb collisions at $\sqrt{s_\mathrm{NN}} = 5.02$~\tev. Figure taken from the ALICE figure repository~\cite{ALICE_figures}.}
+    \label{fig:TOFPID}
+\end{figure}
+
+Other detectors, such as the High Momentum Particle Identification Detector (HMPID) or the Transition Radiation Detector (TRD), complement the PID capabilities of the ALICE experiment. The HMPID is dedicated to the identification of particles with momenta above 2~\gevc, and is based on the detection of Cherenkov radiation emitted by charged particles traversing a radiator. The TRD is used for the identification of electrons and positrons, and is based on the detection of transition radiation emitted by charged particles traversing a radiator with a change in the dielectric constant. The TRD is particularly useful for the identification of electrons and positrons in the high-multiplicity environment of heavy-ion collisions, where the TPC and TOF detectors are not able to provide a sufficient separation between electrons and pions. 
+
+The PID infromation on the decay tracks can be exploited to improve the background rejection and thereby the signal extraction. For this analysis, only the inforamation from the TPC and TOF detector is used, as the ITS PID capabilities are still under development, and the final state particles of the D mesons are pions and kaons, which can be well identified with the TPC and TOF detectors. A track is considered compatible with a mass hypothesis (i.e. a hadron species) depending on the difference between the measured signal $S_\mathrm{meas}^\mathrm{TPC,TOF}$ and the expected signal $S_\mathrm{exp (\pi, K, p)}^\mathrm{TPC,TOF}$ for the given hypothesis. The measured signal is the truncated mean of the \dedx distribution for the TPC detecotr, and the time of flight for the TOF detector. The expected signal is extracted from the ALEPH parametrisation of the Bethe-Bloch formula described above for the TPC, and from a parametrisation of the distribution of $\beta$ as a function of $p$ for the TOF. The difference between the measured and expected signals is then usually normalised by the uncertainty on the measured signal $\sigma_\mathrm{TPC, TOF}$:
+\begin{equation*}
+    \mathrm{n}\sigma_\mathrm{\pi, K, p}^\mathrm{TPC, TOF} = \frac{\lvert S_\mathrm{meas}^\mathrm{TPC, TOF} - S_\mathrm{exp (\pi, K, p)}^\mathrm{TPC, TOF}\rvert}{\sigma_\mathrm{TPC, TOF}}\quad .
+\end{equation*}
+Tracks are considered if at least one PID signal is available from one of the two detectors. A loose preselection is applied to the candidates based on PID information, requiring the three tracks to have a $\mathrm{n}\sigma^\mathrm{TPC} < 5$, or $\mathrm{n}\sigma^\mathrm{TOF} < 5$ for the considered mass hypothesis. This selection effectively reduces the amount of reflections in the data sample, as the wrongly-assigned mass hypothesis are often rejected.
+
+Due to a TPC--TOF matching efficiency which is significantly lower than unity, the PID information from the two detectors is typically combined to obtain a single PID variable $\mathrm{n}\sigma^\mathrm{comb}_\mathrm{\pi, K, p}$, which is used in the final selection. The PID information is combined as
+\begin{equation*}
+    \mathrm{n}\sigma^\mathrm{comb}_\mathrm{\pi, K, p} = 
+    \begin{cases}
+        \mathrm{n}\sigma^\mathrm{TOF}_\mathrm{\pi, K, p} & \text{only TOF information is available}\\
+        \mathrm{n}\sigma^\mathrm{TPC}_\mathrm{\pi, K, p} & \text{only TPC information is available}\\
+        \frac{1}{\sqrt{2}}\sqrt{(\mathrm{n}\sigma^\mathrm{TPC}_\mathrm{\pi, K, p})^2 + (\mathrm{n}\sigma^\mathrm{TOF}_\mathrm{\pi, K, p})^2} & \text{otherwise}\\
+    \end{cases}
+\end{equation*}
+This reduces the number of features used for the Machine Learning analysis described in the following Chapters, and ensures a proper handling of sparse data.
+
+
