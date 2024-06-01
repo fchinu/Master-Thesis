@@ -1,6 +1,6 @@
 \chapter{Machine Learning}
 
-The term \emph{machine learning} (ML) is a broad and versatile concept, encompassing a wide range of algorithms that grant computers the capacity to learn and adapt without being explicitly programmed to do so~\cite{5392560}. A more comprehensive definition characterizes ML as the study of algorithms that enhance their performance (P) at a specific task (T) through the accumulation of experience (E)~\cite{mitchell1997machine}. In recent years, ML techniques have witnessed widespread adoption across diverse fields, with significant impacts realised, particularly with the emergence of generative models such as GPT~\cite{openai2023gpt4}.
+The term \emph{machine learning} (ML) is a broad and versatile concept, encompassing a wide range of algorithms that grant computers the capacity to learn and adapt without being explicitly programmed to do so~\cite{5392560}. A more comprehensive definition characterises ML as the study of algorithms that enhance their performance (P) at a specific task (T) through the accumulation of experience (E)~\cite{mitchell1997machine}. In recent years, ML techniques have witnessed widespread adoption across diverse fields, with significant impacts realised, particularly with the emergence of generative models such as GPT~\cite{openai2023gpt4}.
 ML algorithms have found extensive applications in the high-energy physics field, primarily for the task of distinguishing interesting signals from the vast background present in particle collision data. Furthermore, these algorithms have been employed as triggers, aiding in the rapid identification of events of interest, and have also been instrumental in event reconstruction. Notably, ML algorithms were used in the discovery of the Higgs boson~\cite{CMS:2012qbp}.
 
 \section{Supervised learning}
@@ -30,15 +30,15 @@ The performance of a machine learning model is evaluated through a loss function
 L(\mathbf{y}, \hat{\mathbf{y}}) = -\frac{1}{N} \sum_{i=1}^N \left[ y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right],
 \end{equation}
 
-where N is the number of data points. This function penalizes the model for incorrect classifications, with larger errors contributing more to the total loss.
+where N is the number of data points. This function penalises the model for incorrect classifications, with larger errors contributing more to the total loss.
 
-Minimizing the loss function guides the training process, often employing gradient descent, an iterative optimization algorithm. At each iteration, the model parameters, \\theta \= \\\{\\mathbf\{w\}, b\\\}, are updated in the direction that minimizes the loss gradient:
+Minimizing the loss function guides the training process, often employing gradient descent, an iterative optimization algorithm. At each iteration, the model parameters, \\theta \= \\\{\\mathbf\{w\}, b\\\}, are updated in the direction that minimises the loss gradient:
 
 \begin{equation}
 \theta \leftarrow \theta - \eta \nabla L(\mathbf{y}, \hat{\mathbf{y}})
 \end{equation}
 
-where \\eta is the learning rate, controlling the step size in parameter space. Regularization techniques like L1 or L2 penalty terms can be incorporated to prevent overfitting, adding an additional term to the loss function that penalizes model complexity.
+where \\eta is the learning rate, controlling the step size in parameter space. Regularization techniques like L1 or L2 penalty terms can be incorporated to prevent overfitting, adding an additional term to the loss function that penalises model complexity.
 
 \subsection{Multiclass Classification}
 
