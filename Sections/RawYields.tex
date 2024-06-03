@@ -27,7 +27,7 @@ With the strategy defined above to optimise the hyperparameters, train the model
 
 The task of extracting \ds and \dpl signals from the vast combinatorial background is a challenging one, due to the large amount of background compared to signal. It is however an excellent example of classification problem, and ML algorithms can therefore be exploited to enhance the efficiency of the selection. 
 
-\subsection{Data preparation}
+\subsection{Data preparation}\label{sec:ml_data_preparation}
 \textcolor{red}{Aggiungere come settiamo le labels (0=bkg, 1 = prompt, 2= FD)}
 In order to train a ML model, a labelled dataset with a well defined set of features is required. The dataset is composed of signal and background examples. To obtain a pure sample of signal candidates, Monte Carlo simulations are used to generate \ds and \dpl mesons. Proton-proton collisions are generated using the \textsc{Pythia~8} event generator~\cite{Bierlich:2022pfr} with colour-reconnection Mode~2~\cite{Christiansen:2015yqa}, and the generated particles are propagated through the ALICE detector using the \textsc{Geant4} transport simulation toolkit~\cite{GEANT4:2002zbu}. To enrich the sample of heavy-flavour hadrons, $\mathrm{c\overline{c}}$ and $\mathrm{b\overline{b}}$ pairs are injected into each simulated event. 
 
@@ -95,12 +95,12 @@ The choice of features used to separate signal from background is crucial, as th
          Prong 0 impact parameter XY\\
          Prong 1 impact parameter XY\\
          Prong 2 impact parameter XY\\
-         $n\sigma_{\mathrm comb}^{\pi}(0)$\\         
-         $n\sigma_{\mathrm comb}^{\pi}(1)$\\
-         $n\sigma_{\mathrm comb}^{\pi}(2)$\\
-         $n\sigma_{\mathrm comb}^{\mathrm K}(0)$\\
-         $n\sigma_{\mathrm comb}^{\mathrm K}(1)$\\
-         $n\sigma_{\mathrm comb}^{\mathrm K}(2)$\\
+         $n\sigma_\mathrm{comb}^{\pi}(0)$\\         
+         $n\sigma_\mathrm{comb}^{\pi}(1)$\\
+         $n\sigma_\mathrm{comb}^{\pi}(2)$\\
+         $n\sigma_\mathrm{comb}^{\mathrm K}(0)$\\
+         $n\sigma_\mathrm{comb}^{\mathrm K}(1)$\\
+         $n\sigma_\mathrm{comb}^{\mathrm K}(2)$\\
          \bottomrule
     \end{tabular}
     \end{center}
@@ -173,7 +173,7 @@ The XGBoost algorithm has several hyperparameters~\cite{XGBoost_parameters} that
     \item \code{tree\_method}, which defines the algorithm used to build the trees. The \code{hist} option uses an optimised histogram-based algorithm and is usually the fastest.
 \end{itemize}
 
-The hyperparameters are optimised using the Optuna framework~\cite{akiba2019optuna}, which proved to be a powerful tool thanks to its state-of-the-art algorithms for sampling the hyperparameter space and for efficiently pruning unpromising trials. The Tree-Structured Parzen Estimator~\cite{bergstra2011algorithms}, is used in this Thesis. It is a Bayesian optimisation~\cite{frazier2018tutorial,snoek2012practical} algorithm able to explore the hyperparameter space efficiently. The aim of a Bayesian optimisation is to maximise (or minimise, depending on the task) an objective function $f(\mathbf{x})$ by iteratively sampling a bounded hyperparameter space, $\chi$. The algorithm builds a probabilistic model of the objective function, and uses it to decide which hyperparameters to sample next. The model is updated at each iteration, and the hyperparameters that are most likely to improve the model's performance are sampled. The Optuna algorithm is also able to prune unpromising trials, reducing the computational cost of the optimisation. The optimisation is performed using a 5-fold cross-validation, and the hyperparameters that maximise the macro-averaged one-vs-one ROC AUC metric (described in detail in Sec.~\ref{sec:ml_performance}) are chosen as the optimal configuration. The hyperparameters optimised for the XGBoost model are reported in Table~\ref{tab:ml_hyperparameters}. An additional hyperparameter, \code{lambda}, which is the L2 regularisation term, is also optimised. It helps to prevent overfitting by penalising overly complex models. The optimal hyperparameters are then used to train the model on the full training dataset.
+The hyperparameters are optimised using the Optuna framework~\cite{akiba2019optuna}, which proved to be a powerful tool thanks to its state-of-the-art algorithms for sampling the hyperparameter space and for efficiently pruning unpromising trials. The Tree-Structured Parzen Estimator~\cite{bergstra2011algorithms}, is used in this Thesis. It is a Bayesian optimisation~\cite{frazier2018tutorial,snoek2012practical} algorithm able to explore the hyperparameter space efficiently. The aim of a Bayesian optimisation is to maximise (or minimise, depending on the task) an objective function $f(\mathbf{x})$ by iteratively sampling a bounded hyperparameter space, $\chi$. The algorithm builds a probabilistic model of the objective function, and uses it to decide which hyperparameters to sample next. The model is updated at each iteration, and the hyperparameters that are most likely to improve the model's performance are sampled. The Optuna algorithm is also able to prune unpromising trials, reducing the computational cost of the optimisation. The optimisation is performed using a 5-fold cross-validation, and the hyperparameters that maximise the macro-averaged one-vs-one ROC AUC metric (described in detail in Sec.~\ref{sec:ml_performance}) are chosen as the optimal configuration. The hyperparameters optimised for the XGBoost model are reported in Table~\ref{tab:ml_hyperparameters}. An additional hyperparameter, \code{lambda}, which is the $\mathrm{L_2}$ regularisation term, is also optimised. It helps to prevent overfitting by penalising overly complex models. The optimal hyperparameters are then used to train the model on the full training dataset.
 
 \begin{table}[tb!]
     \centering
@@ -263,4 +263,129 @@ A beeswarm-style SHAP feature importance plot for the prompt \ds probability pre
 \end{figure}
 
 \subsection{Optimisation of the model selection}
-Once the model performance has been validated, a set of selection criteria has to be chosen to select the candidates. 
+Once the model performance has been validated, a set of selection criteria has to be chosen to select the candidates. This is a crucial step of the analysis, as it will define the signal extraction efficiency and the background contamination. Since the model's output consists of a probability of belonging to each class, and the three probabilities sum up to unity, the selection criteria have a total of two degrees of freedom. A first selection is applied on the maximum probability to be a background candidate, and rejects most of the contamination from the combinatorial background. The second one is applied on the minimum probability of being a prompt \ds candidate, and suppresses the signal contribution arising from non-prompt \ds candidates. 
+
+A first indication of the optimal selection criteria can be obtained by studying the model's output distributions. A good working point can be chosen as the point where a good separation between the three classes is achieved. For this analysis, however, the statistical significance of the signal is used to define the optimal selection criteria. For each \pt interval of the analysis, the signal $S$ and the background $B$ are evaluated by fitting the invariant mass distribution of candidates passing the different ML selections to be considered in the optimisation process. Only a subset of the full dataset, corresponding to $\sim 3\%$ of the available data sample is used in this process. The working point is chosen as the set of selections maximising the statistical significance $S/\sqrt{S+B}$. The efficiency of the selection is checked to ensure that it is kept at sufficiently high levels, to reduce possible biases in the final results due to possible imperfections in the MC description of the data. \textcolor{red}{Aggiungere che i bin di analisi non sono uguali a quelli di training}. 
+
+A result of the working point optimisation is presented in Fig.~\ref{fig:ml_significance} for the \textcolor{red}{xx xx}~\gevc interval. The statistical significance of the signal is shown as a function of BDT output score threshold for the probability of being a prompt \ds and a background candidate. The chosen set of selection criteria is shown with a \textcolor{red}{red cross}.
+
+The optimal selection criteria for each \pt interval considered in the analysis are reported in Table~\ref{tab:working_point}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{example-image-a}
+    \caption{Statistical significance of the signal as a function of the selection criteria applied to the model output for the $2<\pt<3$~\gevc interval.}
+    \label{fig:ml_significance}
+\end{figure}
+
+\begin{table}[b!]
+    \centering
+    \caption{Selection criteria applied to enhance the significance of the $\ds$ meson contribution in the $\pt$ bins of the analysis.}
+    \label{tab:working_point}
+    \vspace*{0.3cm}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{c|cc}
+    \toprule
+         \pt interval (\gevc) & Probability to be background $<$ & Probability to be prompt \ds $>$  \\
+         \midrule
+         0.5-1 & 0.01 & 0.2 \\
+         1-1.5 & 0.05 & 0.2 \\
+         1.5-2 & 0.15 & 0.2 \\
+         2-2.5 & 0.25 & 0.2 \\
+         2.5-3 & 0.3 & 0.2 \\
+         3-3.5 & 0.2 & 0.2 \\
+         3.5-4 & 0.2 & 0.2 \\
+         4-4.5 & 0.2 & 0.2 \\
+         4.5-5 & 0.2 & 0.2 \\
+         5-5.5 & 0.3 & 0.2 \\
+         5.5-6 & 0.3 & 0.25 \\
+         6-8   & 0.45 & 0.2 \\
+         8-12  & 0.5 & 0.2 \\
+         12-24 & 0.55 & 0.2 \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
+
+\textcolor{red}{Dire che in teoria non si dovrebbe fare così perchè porta a bias, si dovrebbe usare l'expected significance, ma qua va bene perchè usiamo solo il 3\% della statistica.}
+\section{\texorpdfstring{\ds and \dpl raw-yield extraction}{Ds+ and D+ raw-yield extraction}}
+
+After the working point for the BDT algorithm has been defined, the raw yields of \ds and \dpl mesons are extracted in each \pt interval. They are defined as the sum of particles and antiparticles and are measured in the $0.5<\pt<24$~\gevc interval. The raw yield is extracted by fitting the invariant mass distribution of the selected candidates. 
+
+In several analyses performed by the ALICE Collaboration during the Run~2 data-taking period~\cite{ALICE:2021mgk,ALICE:2023sgl,ALICE:2021kfc}, the raw yield of \ds mesons was extracted by fitting the invariant mass distribution of the candidates with a probability density function constructed as the sum of a function describing the shape of the combinatorial background (usually an exponential function or a low-order ($<3$) polynomial) and of two gaussian distribution to model the \ds and \dpl peaks. The raw yields for the two D-meson species are then obtained by integrating the signal function. 
+
+Figure~\ref{fig:old_fit} shows the fit to the invariant mass distribution of the selected candidates using the approach described above. Due to the concavity-changing shape of the background, the function chosen to describe the background is a third-order polynomial. The signal is described by the sum of two gaussian functions, one for the \ds and one for the \dpl peak. On top of the previously unobserved peculiar shape of the background, the fitting function is not able to describe the data accurately between the two peaks, overestimating the data in this invariant mass region.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/Chapter 5/InvMassFitDs1p5_2.pdf}
+    \caption{Invariant mass distribution of the selected candidates in the $2<\pt<3$~\gevc interval. The fit function is shown as a solid line, while the signal and background components are shown as dashed lines.}
+    \label{fig:old_fit}
+\end{figure}
+
+These two features can be understood as due to the fact that the background does not solely arise from the combination of independent tracks, i.e. the combinatorial background. Other physics processes can contribute to the contamination of the data sample, giving rise to a \emph{correlated background}. One such process is the decay of \dpl mesons into the $\dpl\rightarrow\mathrm{\pi^+K^-\pi^+}$ decay channel, where one of the pions is misidentified as a kaon. Despite being suppressed by the applied ML selections, this contribution can give rise to a noticeable contribution due to the large BR of $9.38\times10^{-2}$~\cite{pdg}.
+
+To validate this hypothesis, a simulation of \dpl decays into $\dpl\rightarrow\mathrm{\pi^+K^-\pi^+}$ was run using \textsc{Pythia}~8~\cite{Bierlich:2022pfr}. Ten billion \dpl mesons were produced with a uniformly distributed \pt spectrum in the $0<\pt<24$~\gevc interval. The \dpl mesons were then forced to decay into the $\dpl\rightarrow\mathrm{\pi^+K^-\pi^+}$ decay channel. For each decay, two invariant masses were evaluated, by assigning the kaon mass to one of the two pions, while the correct masses were assigned to the other two prongs. The invariant mass distributions obtained from the simulation are shown in Fig.~\ref{fig:DplusSimulations} for different \pt intervals. The distribution is characterised by a peak at $\sim 2$~\gevcc, well between the fit range used to extract the raw yield of \ds and \dpl mesons in Fig~\ref{fig:old_fit}. In addition, the invariant mass distribution evolves with the \dpl \pt, with a tail towards higher invariant masses for higher \pt values. This follows naturally from the kinematic properties of the decay.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Chapter 5/Dplus_Corr_Bkg_simulation.pdf}
+    \caption{Invariant mass distribution of the selected candidates in the $2<\pt<3$~\gevc interval. The fit function is shown as a solid line, while the signal and background components are shown as dashed lines.}
+    \label{fig:DplusSimulations}
+\end{figure}
+
+To account for this contribution, a template fit is included in the fit function. This method involves fitting a distribution using a predefined template whose shape is fixed, and the only adjustable parameter is the normalization of the function. The shape of the template is taken from the same simulation used to train the BDT model, as described in Sec.~\ref{sec:ml_data_preparation}, where $\dpl\rightarrow\mathrm{\pi^+K^-\pi^+}$ mesons reconstructed as $\dpl\rightarrow\mathrm{K^+K^-\pi^+}$ are selected. The distribution is fixed to that obtained before applying any ML models, as it was studied that the applied ML selections do not affect the shape of the correlated background. This allows for reducing the statistical fluctuations in the template shape. The final fit function is then constructed as the sum of a parabolic function to describe the combinatorial background, the template function described above for the correlated $\dpl\rightarrow\mathrm{\pi^+K^-\pi^+}$ background source, and two gaussian functions to describe the \ds and \dpl peaks. The signal parameters (mean, width, normalisation) as well as the parameters of the combinatorial background and the normalisation of the template fit are left free in the fit in the $\pt<8$~\gevc interval. The invariant-mass bin width has been fixed to 2~\mevcc. Because of the observed momentum resolution worsening at higher \pt, and because of the lower statistics available in the high-\pt intervals, the width of the \dpl signal peak is fixed to that of the \ds divided by a factor 1.2, which is the observed ratio of the peak widths at low \pt, which presents a flat trend with \pt. In these high-\pt intervals, a first fit is performed by keeping both peak widths as free parameters. Then, the \dpl peak width is fixed to that of the \ds divided by 1.2, and the fit is repeated, keeping the remaining parameters free. Additionally, in order to correctly describe the background shape, the fit range is extended to $1.73<M(\mathrm{KK\pi})<2.15$~\gevcc from $\pt>6$~\gevc, while the narrower invariant mass window $1.75<M(\mathrm{KK\pi})<2.1$~\gevcc is fitted at lower \pt. The fits to the invariant mass distributions of selected D-meson candidates are performed using the \code{flarefly} package~\cite{grosa_2023_7579657}, which provides a flexible pythonic interface for performing fits. 
+
+
+The fit to the invariant mass distribution of selected candidates is shown in Fig.~\ref{fig:new_fit} for the $2<\pt<2.5$~\gevc in the left panel, and for the $5<\pt<5.5$~\gevc interval in the right panel. The total fit function is shown as a solid blue line, the signal contributions are shown as filled green and azure areas for \dpl and \ds mesons, respectively, the combinatorial background is represented with a solid red line, while the correlated background is shown as a dashed violet line. The fit is able to describe the data accurately, as can be deduced from the distribution of the difference between the data and the background fit function, shown in the bottom panels for the two \pt bins. Figure~\ref{fig:new_fit} also shows that the contribution of the correlated $\dpl\rightarrow\mathrm{\pi^+K^-\pi^+}$ background evolves with \pt, with a larger contribution at lower \pt values. The raw yield of \ds and \dpl mesons is then extracted by integrating the signal function.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.48\textwidth]{Figures/Chapter 5/invmassfit_2_2p5.pdf}
+    \includegraphics[width=0.48\textwidth]{Figures/Chapter 5/invmassfit_5_5p5.pdf}
+    \caption{Invariant mass distribution of the selected candidates in the $2<\pt<3$~\gevc interval. The fit function is shown as a solid line, while the signal and background components are shown as dashed lines.}
+    \label{fig:new_fit}
+\end{figure}
+
+The extraction of the raw yields is affected by several arbitrary choices, for example, the functional description of the background, the choice of the fit range, and the invariant-mass bin width. Changes in these choices can lead to variations in the extracted raw yields. To estimate the effect of such arbitrary choice in the final observable (the \ds/\dpl production-yield ratio), and assign a systematic uncertainty associated with the raw yield extraction, the fit is repeated several times by varying the fit range, the bin width, and the functional form of the background. In the low \pt region, the minimum mass is varied between 1.71 and 1.75~\gevcc, while the maximum mass is varied between 2.13 and 2.19~\gevcc. The considered functions to describe the background are a second-order polynomial and an exponential function. At higher \pt, where the signal peaks become broader, the minimum mass is varied between 1.71 and 1.75~\gevcc, while the maximum mass is varied between 2.13 and 2.19~\gevcc. The bin width is varied between 1 and 4~\mevcc across the studied \pt interval. At $\pt>8$~\gevcc, where the \dpl peak width is fixed to that of the \ds divided by 1.2, the peak width of the \dpl meson is changed by varying the factor by 10\%. At lower \pt, all the fit parameters are left free. For each possible combination of these variations, the signal is extracted for the two D-meson species, and the ratio between the two is calculated. The systematic uncertainty is then defined as the sum in quadrature of the standard deviation of the distribution of the \ds/\dpl raw-yield ratio and of the difference between the central raw-yield ratio and the mean of the obtained distribution.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Chapter 5/RawYieldSyst.pdf}
+    \caption{Invariant mass distribution of the selected candidates in the $2<\pt<3$~\gevc interval. The fit function is shown as a solid line, while the signal and background components are shown as dashed lines.}
+    \label{fig:raw_yield_syst}
+\end{figure}
+
+The result of this multi-trial approach for the evaluation of the systematic on the raw-yields extraction is shown in Fig.~\ref{fig:raw_yield_syst} for the $1.0<\pt<1.5$~\gevc interval. In the top-left panel, the raw yields extracted from the fit to the invariant mass distribution are reported for the \ds and \dpl mesons for the different trials. As a cross-check, the raw yields are also extracted by summing the counts of a distribution obtained by subtracting the background fit function from the invariant mass distribution of the candidates passing the ML selections. The bin contents are summed within 3 and 5 standard deviations from the peak mean. The extracted raw yields are stable within the uncertainties across all the trials and the raw yield definition for the \dpl meson. For the \ds meson, the $5\sigma$ bin counting method presents higher raw yields when compared to the ones obtained by integrating the signal function or with a $3\sigma$ bin counting method. However, this is considered as related to fluctuation in the invariant mass distribution rather than a systematic shift of the raw yields due to a different definition of the observable. The raw yields extracted with the default configuration described above are shown as dashed lines. In the top-right panel, the $\chi^2/\mathrm{ndf}$ of the fit to the invariant mass distribution is shown for the different trials. As a quality check, trials with a $\chi^2/\mathrm{ndf}$ greater than 2 are discarded. These results illustrate that the fit function is able to describe the data accurately, independently of the configuration of the fit parameters. In the bottom-left panel, the peak widths for \ds and \dpl are reported, and present a stable behaviour across the different trials. The peak widths for the default configuration are also reported as dashed lines. The bottom-right panel shows the distribution of the \ds/\dpl raw-yield ratio for the different trials, obtained using the three methods previously introduced. The $5\sigma$ bin counting method presents a higher raw-yield ratio when compared to the other two methods, because of the higher \ds yields. The systematic uncertainty is defined as the sum in quadrature of the standard deviation of the distribution of \ds/\dpl raw-yield ratio obtained by integrating the signal function and the difference between the central value reported with a dashed red line and the mean of this distribution. This quantity ranges from 1\% to 10\% of the central \ds/\dpl raw-yield ratio, depending on the considered \pt interval. The systematic uncertainty is then assigned after smoothing the \pt dependence of the obtained values. The assigned systematic uncertainty is reported in Table~\ref{tab:raw_yield_syst}.
+
+
+
+
+\begin{table}[htb]
+    \centering
+    \caption{Systematic uncertainty on the raw-yield extraction for the \ds and \dpl mesons.}
+    \label{tab:raw_yield_syst}
+    \vspace*{0.3cm}
+    \resizebox{\columnwidth}{!}{%
+    \begin{tabular}{c|cc}
+    \toprule
+         \pt (\gevc) & $\sqrt{\mathrm{RMS^2+\Delta^2}}$/(central \ds/\dpl)--- (\%) & Assigned systematic uncertainty (\%)\\
+         \midrule
+         0.5$-$1 & 4  & 3 \\
+         1$-$1.5 & 1  & 3 \\
+         1.5$-$2 & 2  & 3 \\
+         2$-$2.5 & 3  & 3 \\
+         2.5$-$3 & 3  & 3 \\
+         3$-$3.5 & 3  & 3 \\
+         3.5$-$4 & 3  & 3 \\
+         4$-$4.5 & 6  & 5 \\
+         4.5$-$5 & 7  & 5 \\
+         5$-$5.5 & 3  & 5 \\
+         5.5$-$6 & 5  & 5 \\
+         6$-$8   & 8  & 8 \\
+         8$-$12  & 9  & 9 \\
+         12$-$24 & 10 & 10 \\
+        \bottomrule
+    \end{tabular}%
+    }
+\end{table}
