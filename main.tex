@@ -17,7 +17,16 @@
 \usepackage{fancyhdr} % layout
 \usepackage[a4paper, margin=3cm]{geometry}
 \usepackage{lettrine}
+\usepackage{titlesec}
+\usepackage{tocloft}
 \input{RoyalIn.fd}
+
+\titleformat*{\section}{\bfseries\boldmath}
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries\boldmath} % Bold math in chapter title
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+\renewcommand{\cftchapfont}{\bfseries\boldmath}
 
 \renewcommand{\LettrineFontHook}{\usefont{U}{RoyalIn}{xl}{n}}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{#1}}
@@ -39,10 +48,21 @@
 \date{October 2023}
 
 \begin{document}
+\pagenumbering{Roman}
 
 %\maketitle
 
 \input{abbreviations}
+
+%\include{Sections/Abstract}
+%
+%\newpage
+%\setcounter{page}{3}
+%\thispagestyle{plain}
+%\tableofcontents
+%\newpage
+
+\pagenumbering{arabic}
 
 %\include{Sections/HighEnergyNuclearPhysics}
 \setcounter{chapter}{1}
@@ -54,13 +74,13 @@
 \setcounter{chapter}{4}
 %\include{Sections/RawYields}
 \setcounter{chapter}{5}
-\include{Sections/Corrections}
+%\include{Sections/Corrections}
 \setcounter{chapter}{6}
 %\include{Sections/Results}
 \setcounter{chapter}{7}
 %\include{Sections/PbPb}
 \setcounter{chapter}{8}
-%\include{Sections/Conclusions}
+\include{Sections/Conclusions}
 \bibliographystyle{utphys}   % Remember we use title in the biblio
 \bibliography{bibliography}
 
