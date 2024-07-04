@@ -11,6 +11,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{braket}
+\usepackage{rotating}
 \usepackage{siunitx}
 \usepackage{mathtools}
 \usepackage{booktabs}
@@ -21,7 +22,9 @@
 \usepackage{tocloft}
 \input{RoyalIn.fd}
 
-\titleformat*{\section}{\bfseries\boldmath}
+\titleformat*{\section}{\bfseries\Large\boldmath}
+\titleformat*{\subsection}{\bfseries\large\boldmath}
+\titleformat*{\subsubsection}{\bfseries\boldmath}
 \titleformat{\chapter}[display]
   {\normalfont\Huge\bfseries\boldmath} % Bold math in chapter title
   {\chaptertitlename\ \thechapter}{20pt}{\Huge}
@@ -68,7 +71,7 @@
 \setcounter{chapter}{1}
 %\include{Sections/OpenHeavyFlavourPhysics}
 \setcounter{chapter}{2}
-%\include{Sections/ALICE}
+\include{Sections/ALICE}
 \setcounter{chapter}{3}
 %\include{Sections/Reconstruction}
 \setcounter{chapter}{4}
@@ -80,8 +83,11 @@
 \setcounter{chapter}{7}
 %\include{Sections/PbPb}
 \setcounter{chapter}{8}
-\include{Sections/Conclusions}
+%\include{Sections/Conclusions}
 \bibliographystyle{utphys}   % Remember we use title in the biblio
+
+\newpage
 \bibliography{bibliography}
+\thispagestyle{plain}
 
 \end{document}
