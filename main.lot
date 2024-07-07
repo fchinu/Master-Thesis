@@ -1,0 +1,24 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Main layout parameters of the new ITS2. Table taken from Ref.~\cite {ALICE:2023udb}.}}{47}{table.3.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Applied single-track selection criteria.}}{58}{table.4.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Topological and kinematical pre-selections applied to the \ensuremath {\mathrm {D_s^+}}\xspace - and \ensuremath {\mathrm {D^+}}\xspace -mesons candidates. The selection criterion on the $n\sigma _\mathrm {TOF}$ variable is applied only when a TOF cluster is matched to the track, i.e., tracks with no TOF signal are not rejected. In addition, a logical \texttt {OR} is applied to the conditions on the $n\sigma _\mathrm {TOF}$ and $n\sigma _\mathrm {TPC}$ PID variables, meaning that a candidate is accepted if, for all daughter tracks, at least one of the conditions is satisfied.}}{70}{table.5.1}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Number of candidates within the \ensuremath {p_\mathrm {T}}\xspace intervals used to train and test the model.}}{71}{table.5.2}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Candidate features used to train the ML model.}}{72}{table.5.3}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Optimised hyperparameter configuration for some representative \ensuremath {p_\mathrm {T}}\xspace intervals considered in the model training.}}{77}{table.5.4}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Selection criteria applied to enhance the significance of the $\ensuremath {\mathrm {D_s^+}}\xspace $ meson signal in the $\ensuremath {p_\mathrm {T}}\xspace $ intervals considered for the analysis.}}{86}{table.5.5}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Systematic uncertainty on the raw-yield extraction for the ratio of the \ensuremath {\mathrm {D_s^+}}\xspace and \ensuremath {\mathrm {D^+}}\xspace mesons yields.}}{96}{table.5.6}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Summary of the assigned systematic uncertainties on the \ensuremath {\mathrm {D_s^+}}\xspace /\ensuremath {\mathrm {D^+}}\xspace production yield ratio.}}{111}{table.6.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {8.1}{\ignorespaces Variation range and number of steps for the variables used in the optimisation of the selection criteria for the selection of \ensuremath {\mathrm {D_s^+}}\xspace - and \ensuremath {\mathrm {D^+}}\xspace -meson candidates in Pb--Pb collisions at \ensuremath {\sqrt {s_\mathrm {NN}}=5.36~\mathrm {Te\kern -.1emV}}\xspace .}}{124}{table.8.1}%
+\contentsline {table}{\numberline {8.2}{\ignorespaces Optimal selection criteria for the selection of \ensuremath {\mathrm {D_s^+}}\xspace meson candidates in the 10--30\% centrality class.}}{125}{table.8.2}%
+\contentsline {table}{\numberline {8.3}{\ignorespaces Optimal selection criteria for the selection of \ensuremath {\mathrm {D_s^+}}\xspace meson candidates in the 30--50\% centrality class.}}{126}{table.8.3}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

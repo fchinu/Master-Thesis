@@ -1,10 +1,12 @@
 \documentclass[12pt]{report}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
+\usepackage{pdfpages}
 \usepackage{tikz-feynman}
 \usepackage{hyperref}
 \usepackage{amsfonts}
 \usepackage{siunitx}
+\usepackage[nottoc,notlof,notlot]{tocbibind}
 \usepackage{enumerate}
 \usepackage{multirow}
 \usepackage{xspace}
@@ -41,10 +43,6 @@
 \fancyhead[L]{}
 \fancyhead[R]{}
 
-%\usepackage{biblatex}
-
-%\addbibresource{bibliography.bib}
-
 
 \title{Thesis}
 \author{Fabrizio Chinu}
@@ -54,46 +52,67 @@
 \pagenumbering{Roman}
 
 %\maketitle
-
+\clearpage
 \input{abbreviations}
+\thispagestyle{empty}
+\newgeometry{bottom=0.1cm, top=2.5cm}
+\include{Sections/Frontespizio}
+\restoregeometry
+
+\newpage\null\thispagestyle{empty}\newpage
 
 \include{Sections/Abstract}
 %
-%\newpage
-%\setcounter{page}{3}
-%\thispagestyle{plain}
-%\tableofcontents
-%\newpage
+\newpage
+\setcounter{page}{3}
+\fancyhead[C]{List of Contents}
+\thispagestyle{plain}
+\tableofcontents
+\newpage
+\fancyhead[C]{\chaptername~\thechapter~-- \leftmark }
 
 \pagenumbering{arabic}
 
-%\include{Sections/HighEnergyNuclearPhysics}
+\include{Sections/HighEnergyNuclearPhysics}
 \setcounter{chapter}{1}
-%\include{Sections/OpenHeavyFlavourPhysics}
+\include{Sections/OpenHeavyFlavourPhysics}
 \setcounter{chapter}{2}
-%\include{Sections/ALICE}
+\include{Sections/ALICE}
 \setcounter{chapter}{3}
-%\include{Sections/Reconstruction}
+\include{Sections/Reconstruction}
 \setcounter{chapter}{4}
-%\include{Sections/RawYields}
+\include{Sections/RawYields}
 \setcounter{chapter}{5}
-%\include{Sections/Corrections}
+\include{Sections/Corrections}
 \setcounter{chapter}{6}
 \include{Sections/Results}
 \setcounter{chapter}{7}
-%\include{Sections/PbPb}
+\include{Sections/PbPb}
 \setcounter{chapter}{8}
-%\include{Sections/Conclusions}
+\include{Sections/Conclusions}
 
-%\appendix
-%\fancyhead[C]{Appendix~\thechapter~-- \leftmark }
-%\include{Sections/AppendixA}
+\appendix
+\fancyhead[C]{Appendix~\thechapter~-- \leftmark }
+\include{Sections/AppendixA}
+\include{Sections/AppendixB}
+\include{Sections/AppendixC}
 
 \newpage
-\thispagestyle{plain}
-\bibliographystyle{utphys}   % Remember we use title in the biblio
+\fancyhead[C]{Bibliography}
+\bibliographystyle{utphys}   % Remember we use title in he %biblio
 
 
 \bibliography{bibliography}
+\clearpage
+\fancyhead[C]{List of Figures}
+\listoffigures
+\clearpage
+\fancyhead[C]{List of Tables}
+\listoftables
+\clearpage
+
+
+\fancyhead[C]{Ringraziamenti}
+\include{Sections/Ringraziamenti}
 
 \end{document}
