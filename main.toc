@@ -78,10 +78,10 @@
 \contentsline {section}{\numberline {6.3}Branching ratio correction}{104}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Systematic uncertainties}{105}{section.6.4}%
 \contentsline {subsection}{\numberline {6.4.1}BDT selection efficiency}{105}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Imperfections in the description of the tracking performance}{107}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.2}Imperfections in the description of the tracking performance}{108}{subsection.6.4.2}%
 \contentsline {subsection}{\numberline {6.4.3}Prompt fraction}{108}{subsection.6.4.3}%
 \contentsline {subsection}{\numberline {6.4.4}Generated Monte Carlo \ensuremath {p_\mathrm {T}}\xspace shape}{109}{subsection.6.4.4}%
-\contentsline {subsection}{\numberline {6.4.5}Summary of systematic uncertainties}{111}{subsection.6.4.5}%
+\contentsline {subsection}{\numberline {6.4.5}Summary of systematic uncertainties}{110}{subsection.6.4.5}%
 \contentsline {chapter}{\numberline {7}\ensuremath {\mathrm {D_s^+}}\xspace /\ensuremath {\mathrm {D^+}}\xspace production-yield ratio}{112}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Dependence on centre-of-mass energy}{113}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Dependence on rapidity}{116}{section.7.2}%
